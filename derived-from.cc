@@ -2,54 +2,46 @@
 #include <cstring> // for strlen()
 using namespace std;
 
-class foo
-{
-public:
-  int m_length;
-  char* m_pString;
-  void Assign(const char* pString)
-  {
-    m_length = strlen(pString);
-    m_pString = new char[m_length];
-    for(int i = 0; i < m_length; i++)
-    {
-      m_pString[i] = pString[i];
-    }
-  }
-  void Print()
-  {
-    cout << "String: \"" << m_pString << "\"\n";
-  }
-};
-
-
-class fooB: public foo
-{
-  
-};
+class foo{};
+class fooB: public foo {};
 
 template<typename typeA, typename typeB>
-struct is_same;
+struct is_the_same;
 
 template<typename typeA, typename typeB>
-struct is_same
+struct is_the_same
 {
   static const bool value = false;
 };
 
 template<typename typeA>
-struct is_same<typeA, typeA>
+struct is_the_same<typeA, typeA>
 {
   static const bool value = true;
 };
 
 template<typename classA, typename classB>
-bool IsSameClass()
+const bool IsSameClass()
 {
-  return is_same<classA, classB>::value;
+  return is_the_same<classA, classB>::value;
 };
 
+template<typename classA, typename classB>
+const bool IsSameClass(const char* pClassA, const char* pClassB)
+{
+  const bool bTheSame = is_the_same<classA, classB>::value;
+  printf("Checking '%s' and '%s' and they are %s\n", pClassA, pClassB, bTheSame ? "the same." : "different.");
+  return is_the_same<classA, classB>::value;
+};
+
+//let's get the type, and the name of the type in a char*
+#define IS_SAME_CLASS(A, B) IsSameClass<A, B>(#A, #B)
+
 int main() {
-    const bool bIsSameClass = IsSameClass(foo, fooB);
-    std::cout << "Hello World!" << std::endl;
+    const bool bIsSameClass = IsSameClass<foo, fooB>();
+    std::cout << "bIsSameClass? " << (bIsSameClass ? "true" : "false") << std::endl;
+    
+    const bool bIsSameClassB = IS_SAME_CLASS(foo, fooB);
+
+    return 1;
 }
