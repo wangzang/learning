@@ -34,7 +34,7 @@ const bool IsSameClass(const char* pClassA, const char* pClassB)
   return is_the_same<classA, classB>::value;
 };
 
-//let's get the type, and the name of the type in a const char*
+//let's get the type, and capturing the name of the type in a const char*
 #define IS_SAME_CLASS(A, B) IsSameClass<A, B>(#A, #B)
 
 int main() {
