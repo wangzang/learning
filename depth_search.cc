@@ -20,6 +20,7 @@ public:
             printf("\tindex: %d, value: %d\n", i, array[i]);
     }
 private:
+    //this is a set size because i can't get ctor/dtor declared correctly.
     typeA array[10];
     int depth;
 };
