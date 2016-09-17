@@ -11,8 +11,14 @@ public:
     };
     typeA pop()
     {
-        return array[depth--];
+        return array[--depth];
     };
+    void printStack()
+    {
+        printf("Stack: \n");
+        for(int i = 0; i < depth; i++)
+            printf("\tindex: %d, value: %d\n", i, array[i]);
+    }
 private:
     typeA array[10];
     int depth;
@@ -21,5 +27,15 @@ private:
 int main()
 {
     MyStack<int> myStack;
+    myStack.push(3);
+    myStack.push(2);
+    myStack.push(1);
+    myStack.printStack();
+    int value = myStack.pop();
+    printf("popped value: %d\n", value);
+    value = myStack.pop();
+    printf("popped value: %d\n", value);
+    value = myStack.pop();
+    printf("popped value: %d\n", value);
     return 1;
 }
