@@ -1,4 +1,4 @@
-all: hello-cpp-world hello-c-world
+all: hello-cpp-world hello-c-world depth_search
 
 %: %.cc
 	g++ -std=c++11 $< -o $@
@@ -7,4 +7,4 @@ all: hello-cpp-world hello-c-world
 	gcc $< -o $@
 
 clean:
-	rm -f hello-c-world hello-cpp-world
+	rm -f hello-c-world hello-cpp-world depth_search
