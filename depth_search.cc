@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstring>
+using namespace std;
 
 template<typename typeA>
 class MyStack
@@ -17,7 +18,10 @@ public:
     {
         printf("Stack: \n");
         for(int i = 0; i < depth; i++)
-            printf("\tindex: %d, value: %d\n", i, array[i]);
+		{
+			cout << "\t index: " << i << " value: " << array[i] << std::endl;
+			}
+		
     }
 private:
     typeA array[10];
@@ -26,16 +30,16 @@ private:
 
 int main()
 {
-    MyStack<int> myStack;
-    myStack.push(3);
-    myStack.push(2);
-    myStack.push(1);
+    MyStack<char> myStack;
+    myStack.push('a');
+    myStack.push('b');
+    myStack.push('c');
     myStack.printStack();
-    int value = myStack.pop();
-    printf("popped value: %d\n", value);
+    auto value = myStack.pop();
+	cout << "popped value: " << value << endl;
     value = myStack.pop();
-    printf("popped value: %d\n", value);
+	cout << "popped value: " << value << endl;
     value = myStack.pop();
-    printf("popped value: %d\n", value);
+    cout << "popped value: " << value << endl;
     return 1;
 }
