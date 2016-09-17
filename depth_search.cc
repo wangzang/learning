@@ -2,11 +2,20 @@
 #include <cstring>
 
 template<typename typeA>
-class MyStack<typeA>
+class MyStack
 {
 public:
-    MyStack();
-    typeA array;
+    void push(typeA value)
+    {
+        array[depth++] = value;
+    };
+    typeA pop()
+    {
+        return array[depth--];
+    };
+private:
+    typeA array[10];
+    int depth;
 };
 
 int main()
